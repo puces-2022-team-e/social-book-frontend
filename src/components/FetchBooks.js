@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default class FetchBooks extends React.Component {
 	state = {
 		loading: true,
