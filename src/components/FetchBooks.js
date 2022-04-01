@@ -8,7 +8,7 @@ export default class FetchBooks extends React.Component {
 
 	async componentDidMount() {
 		console.log('fetching books');
-		const url = 'http://127.0.0.1:8077/api/v1/b';
+		const url = 'https://cherry-tart-55973.herokuapp.com/api/v1/b';
 
 		const response = await fetch(url, {
 			method: 'GET',
