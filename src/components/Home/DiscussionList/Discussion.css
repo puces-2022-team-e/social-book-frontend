@@ -1,0 +1,31 @@
+.Discussion-item {
+    padding: 1px;
+    margin: 10px;
+    border-radius: 8px;
+    background-color: #bdcdd6;
+}
+
+.Discussion-book-summary {
+    background-color: #88B2CC;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.Discussion-texts {
+    display: flex;
+    margin-left: 22px;
+}
+
+.Discussion-comment {
+    background-color: #88B2CC;
+    border-radius: 10px;
+    margin: 10px;
+    margin-left: 40px;
+    padding: 1px;
+}
