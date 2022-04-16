@@ -1,6 +1,6 @@
 {
-  "short_name": "Social Book",
-  "name": "The Best Social Media everything about books ",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
