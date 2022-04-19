@@ -39,19 +39,6 @@
   border-radius: 5px;
 }
 
-.header {
-  padding: 10px;
-  padding-right: 40px;
-  padding-left: 40px;
-  text-align: center;
-  align-items: baseline;
-  display: flex;
-  justify-content: space-between;
-  background: #E98973;
-  color: #E7D4C0;
-  font-size: 20px;
-}
-
 .footer {
   padding: 10px;
   text-align: center;

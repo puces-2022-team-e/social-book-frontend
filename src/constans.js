@@ -1,0 +1,1 @@
+export const appId = '963927842810-or0j5j8kmvf4c01hd15bbompaqut7qpu.apps.googleusercontent.com';

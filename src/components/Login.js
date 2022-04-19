@@ -1,73 +1,30 @@
-import React, { Component } from 'react';
-import BaseComponent from './BaseComponent/BaseComponent';
+import React from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { appId } from '../constans';
 
-class Login extends Component {
-	
-	constructor() {
-		super();
-		this.appId = '963927842810-or0j5j8kmvf4c01hd15bbompaqut7qpu.apps.googleusercontent.com';
-		this.state = {
-			isLoggedIn: false,
-			userGoogleData: {
-				id: '',
-				name: '',
-				email: '',
-				photo: '',
-			},
-		};
-	}
+const Login = ({ userInfo, onSuccess, onLogout, onError }) => {
 
-	loginSuccess = (response) => {
-		let userGoogleData = {
-			id: response.profileObj.googleId,
-			name: response.profileObj.name,
-			email: response.profileObj.email,
-			photo: response.profileObj.imageUrl,
-		};
-		this.setState({ userGoogleData, isLoggedIn: true });
-	};
-
-	loginError = (response) => {
-		console.error(response);
-	};
-
-	logout = (response) => {
-		console.log(response);
-		let userGoogleData = {
-			id: '',
-			name: '',
-			email: '',
-			photo: '',
-		};
-		this.setState({ userGoogleData, isLoggedIn: false });
-	};
-
-	render() {
-		return (
-			<BaseComponent>
-				<div className="container">
-					{this.state.isLoggedIn ? (
-						<div>
-							<GoogleLogout
-								clientId={this.appId}
-								buttonText={'Sair'}
-								onLogoutSuccess={this.logout}
-							></GoogleLogout>
-						</div>
-					) : (
-						<GoogleLogin
-							clientId={this.appId}
-							buttonText="Login usando Google"
-							onSuccess={this.loginSuccess}
-							onFailure={this.loginError}
-							isSignedIn={true}
-						/>
-					)}
+	return (
+		<div className="container">
+			{userInfo.isLoggedIn ? (
+				<div>
+					<GoogleLogout
+						clientId={appId}
+						buttonText={'Sair'}
+						onLogoutSuccess={onLogout}
+					></GoogleLogout>
 				</div>
-			</BaseComponent>
-		);
-	}
+			) : (
+				<GoogleLogin
+					clientId={appId}
+					buttonText="Login usando Google"
+					onSuccess={onSuccess}
+					onFailure={onError}
+					isSignedIn={true}
+				/>
+			)}
+		</div>
+	);
 }
 
 export default Login;

@@ -1,5 +1,4 @@
 import React from 'react'
-import BaseComponent from "../BaseComponent/BaseComponent";
 import DiscussionList from './DiscussionList/DiscussionList';
 
 const Home = () => {
@@ -57,13 +56,9 @@ const Home = () => {
   ]
     
   return (
-    <>
-        <BaseComponent>
-            <div className='container'>
-                <DiscussionList key={"list"} discussions={discussions} />
-            </div>
-        </BaseComponent>
-    </>
+    <div className='container'>
+        <DiscussionList key={"list"} discussions={discussions} />
+    </div>
   )
 }
 

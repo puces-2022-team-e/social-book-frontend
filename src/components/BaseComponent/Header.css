@@ -1,0 +1,28 @@
+.header {
+    padding: 10px;
+    padding-right: 40px;
+    padding-left: 40px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    background: #E98973;
+    color: #E7D4C0;
+    font-size: 20px;
+  }
+
+.header-profile-info {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+}
+
+.header-profile-photo {
+    max-width: 40px;
+    border-radius: 100%;
+    margin: 10px;
+}
+
+.header-login-button {
+    align-self: flex-end;
+}
