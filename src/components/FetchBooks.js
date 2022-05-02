@@ -1,4 +1,5 @@
 import React from 'react';
+import cookie from 'react-cookies';
 export default class FetchBooks extends React.Component {
 	state = {
 		loading: true,
@@ -8,9 +9,12 @@ export default class FetchBooks extends React.Component {
 	async componentDidMount() {
 		console.log('fetching books');
 		const url = 'https://cherry-tart-55973.herokuapp.com/api/v1/b';
-
+		//const url = `http://localhost:8077/api/v1/b`
 		const response = await fetch(url, {
 			method: 'GET',
+			headers: {
+				'Authorization': cookie.load('loginToken'),
+			}
 		});
 
 		const allBooks = await response.json();

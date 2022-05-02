@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import Header from './components/BaseComponent/Header';
 import Footer from './components/BaseComponent/Footer';
@@ -7,18 +7,19 @@ import About from './components/About';
 import Home from './components/Home/Home';
 import Login from './components/Login';
 import FetchBooks from './components/FetchBooks';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import cookie from 'react-cookies';
 
 const App = () => {
 	const navigate = useNavigate();
 
 	const [userInfo, setUserInfo] = useState({
-		isLoggedIn: false,
+		isLoggedIn: cookie.load('isLoggedIn') || false,
 		userGoogleData: {
-			id: '',
-			name: '',
-			email: '',
-			photo: '',
+			id: cookie.load('userId') || '',
+			name: cookie.load('userName') || '',
+			email: cookie.load('userEmail') || '',
+			photo: cookie.load('userPhoto') || '',
 		},
 	});
 
@@ -29,8 +30,18 @@ const App = () => {
 			email: response.profileObj.email,
 			photo: response.profileObj.imageUrl,
 		};
-		console.log(userGoogleData)
-		setUserInfo({ userGoogleData, isLoggedIn: true });
+
+		//toDo make a function to handle the cookies
+		cookie.save('loginToken', response.tokenId);
+		cookie.save('userId', response.profileObj.googleId);
+		cookie.save('userName', response.profileObj.name);
+		cookie.save('userEmail', response.profileObj.email);
+		cookie.save('userPhoto', response.profileObj.imageUrl);
+		cookie.save('isLoggedIn', true);
+
+		console.log(response.tokenId);
+		console.log(userGoogleData);
+		setUserInfo({ userGoogleData, isLoggedIn: cookie.load('isLoggedIn') });
 		navigate('/');
 	};
 
@@ -39,28 +50,44 @@ const App = () => {
 	};
 
 	const onLogout = (response) => {
-		console.log(response);
 		const userGoogleData = {
 			id: '',
 			name: '',
 			email: '',
 			photo: '',
 		};
+		cookie.remove('loginToken', '');
+		cookie.remove('userId', '');
+		cookie.remove('loginToken', '');
+		cookie.remove('userName', '');
+		cookie.remove('userEmail', '');
+		cookie.remove('userPhoto', '');
+		cookie.save('isLoggedIn', false);
 		setUserInfo({ userGoogleData, isLoggedIn: false });
 	};
-	console.log(typeof onLoginSuccess)
+
 	return (
-		<div className="App"> 
-			<Header userInfo={userInfo}/>
-				<Routes>
-					<Route path='/fetchbooks' element={<FetchBooks />} />
-					<Route path='/about'  element={<About />} />
-					<Route path='/' element={<Home />} />
-					<Route path='/login' element={<Login userInfo={userInfo} onSuccess={onLoginSuccess} onLogout={onLogout} onError={onLoginError}/>} />
-				</Routes>
+		<div className="App">
+			<Header userInfo={userInfo} />
+			<Routes>
+				<Route path="/fetchbooks" element={<FetchBooks />} />
+				<Route path="/about" element={<About />} />
+				<Route path="/" element={<Home />} />
+				<Route
+					path="/login"
+					element={
+						<Login
+							userInfo={userInfo}
+							onSuccess={onLoginSuccess}
+							onLogout={onLogout}
+							onError={onLoginError}
+						/>
+					}
+				/>
+			</Routes>
 			<Footer />
 		</div>
-	)
-}
+	);
+};
 
 export default App;

@@ -23,9 +23,9 @@ const Header = ({ userInfo }) => {
       </h1>
       <div >
           {userInfo.isLoggedIn ? (
-              profile_info(`Você está logado como ${userInfo.userGoogleData.name}`, userInfo.userGoogleData.photo, 'Sair')
+              profile_info(`${userInfo.userGoogleData.name}`, userInfo.userGoogleData.photo, 'Sair')
             ) : (
-              profile_info('Você não está logado', 'https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true', 'Entrar')
+              profile_info('Faça Login', 'https://filestore.community.support.microsoft.com/api/images/6061bd47-2818-4f2b-b04a-5a9ddb6f6467?upload=true', 'Entrar')
             )}
       </div>
     </div>
