@@ -1,0 +1,20 @@
+.bookpage {
+    max-width: 500px;
+    margin: 30px auto;
+    text-align: center;
+    overflow: auto;
+    min-height: 300px;
+    border: 1px solid #658EA9;
+    padding: 30px;
+    flex-direction: column;
+}
+
+.bookcover {
+    max-width: 50%;
+  }
+  
+.booksummary{
+    background-color: #ccdce6;
+    border-radius: 5px;
+    border: 1px solid #658EA9;
+}
