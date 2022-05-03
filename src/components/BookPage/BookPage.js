@@ -16,8 +16,8 @@ function BookPage() {
 
     async function featchBookInfo () {
         console.log('fetching books');
-        // const url = 'https://cherry-tart-55973.herokuapp.com/api/v1/b/${id}';
-        const url = `http://localhost:8077/api/v1/b/${id}`
+        const url = `https://cherry-tart-55973.herokuapp.com/api/v1/b/${id}`;
+        // const url = `http://localhost:8077/api/v1/b/${id}`
         const response = await fetch(url, {
             method: 'GET',
             headers: {
