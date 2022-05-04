@@ -9,6 +9,7 @@ import Login from './components/Login';
 import FetchBooks from './components/FetchBooks';
 import { useNavigate } from 'react-router-dom';
 import cookie from 'react-cookies';
+import BookPage from './components/BookPage/BookPage';
 
 const App = () => {
 	const navigate = useNavigate();
@@ -73,6 +74,7 @@ const App = () => {
 				<Route path="/fetchbooks" element={<FetchBooks />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/" element={<Home />} />
+				<Route path="/books/:id" element={<BookPage />} />
 				<Route
 					path="/login"
 					element={
