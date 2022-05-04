@@ -74,7 +74,7 @@ const App = () => {
 				<Route path="/fetchbooks" element={<FetchBooks />} />
 				<Route path="/about" element={<About />} />
 				<Route path="/" element={<Home />} />
-				<Route path="/book/:id" element={<BookPage />} />
+				<Route path="/books/:id" element={<BookPage />} />
 				<Route
 					path="/login"
 					element={
