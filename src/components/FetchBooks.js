@@ -7,19 +7,17 @@ export default class FetchBooks extends React.Component {
 	};
 
 	async componentDidMount() {
-		console.log('fetching books');
 		const url = 'https://cherry-tart-55973.herokuapp.com/api/v1/b';
 		//const url = `http://localhost:8077/api/v1/b`
 		const response = await fetch(url, {
 			method: 'GET',
 			headers: {
-				'Authorization': cookie.load('loginToken'),
-			}
+				Authorization: cookie.load('loginToken'),
+			},
 		});
+		const allBooks = (await response.json());
 
-		const allBooks = await response.json();
-
-		this.setState({ loading: false, books: allBooks.books });
+		this.setState({ loading: false, books: allBooks });
 	}
 
 	render() {
@@ -34,34 +32,36 @@ export default class FetchBooks extends React.Component {
 
 		return (
 			<div>
-				{ this.state.books.map(book => (
+				{this.state.books.map((book) => (
 					<div>
-						<div><br></br></div>
+						<div>
+							<br></br>
+						</div>
 						<div>{book.title}</div>
 						<div>{book.authors[0]}</div>
 						<img src={book.imageLinks.mainImage} width="250" height="300" />
-						<div> { `Average Rating: ${ printStars(book.averageRating)}` } </div>
-						<div><br></br></div>
+						<div> {`Average Rating: ${printStars(book.averageRating)}`} </div>
+						<div>
+							<br></br>
+						</div>
 					</div>
 				))}
-					
 			</div>
 		);
 	}
 }
 
-
 //Print mockup for rating stars
-function printStars(nStars){
-	let cStars = "["
+function printStars(nStars) {
+	let cStars = '[';
 	console.log(`Average Rating: ${nStars}`);
-	if ( nStars === 0){
-		return cStars += "  ]"
+	if (nStars === 0) {
+		return (cStars += '  ]');
 	}
 
-	for (let i = 0 ; i  < nStars ; i++){
-		cStars += "*"
+	for (let i = 0; i < nStars; i++) {
+		cStars += '*';
 	}
 
-	return cStars += "]"
+	return (cStars += ']');
 }

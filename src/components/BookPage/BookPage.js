@@ -26,7 +26,7 @@ function BookPage() {
         });
 
         const bookResponse = await response.json();
-        bookInfo = bookResponse.book
+        bookInfo = bookResponse
 
         setLoading(false);
     }
