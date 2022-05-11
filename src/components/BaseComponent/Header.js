@@ -21,6 +21,9 @@ const Header = ({ userInfo }) => {
       <h1>
         <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit'}}>Social Book</Link>
       </h1>
+      <p>
+        <Link to='/books'style={{ color: 'inherit', textDecoration: 'inherit'}}>Livros</Link>
+      </p>
       <div >
           {userInfo.isLoggedIn ? (
               profile_info(`${userInfo.userGoogleData.name}`, userInfo.userGoogleData.photo, 'Sair')
