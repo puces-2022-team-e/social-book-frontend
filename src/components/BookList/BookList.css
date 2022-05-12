@@ -1,0 +1,19 @@
+.bookitembox {
+    display: inline-block;
+}
+
+.bookitem {
+    display: flex;
+    margin: 22px;
+    padding: 8px;
+    justify-content: center;
+    border-radius: 5px;
+    border-color: lightgrey;
+    border-width: 2px;
+    border-style: solid;
+}
+
+.bookinfo {
+    padding: 20px;
+    align-self: center;
+}
