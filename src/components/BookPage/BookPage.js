@@ -2,9 +2,10 @@ import React, { useState} from 'react'
 import {
     useParams
   } from "react-router-dom";
-import { Rating, Button } from '@mui/material'
+import { Rating, CircularProgress } from '@mui/material'
 import cookie from 'react-cookies';
 import './BookPage.css'
+import '../../App.css'
 
 
 let bookInfo = undefined;
@@ -35,11 +36,19 @@ function BookPage() {
     console.log('rendering');
     if (loading) {
         featchBookInfo()
-        return <div>Loading book ... </div>;
+        return (
+            <div className='progressbar'>
+				<CircularProgress />
+			</div>
+        );
     }
 
     if (!bookInfo) {
         return <div>Unable to find book</div>;
+    }
+
+    if(bookInfo.error) {
+        return <div>{bookInfo.error}</div>
     }
 
     console.log('book page with info')
@@ -49,10 +58,6 @@ function BookPage() {
             <h1>{bookInfo.title}</h1>
             <h2>{bookInfo.authors[0]}</h2>
             <Rating name="no-value" value={null} />
-            <div>
-                <Button color="primary">Lido</Button>
-                <Button href={bookInfo.selfLink}>Comprar</Button>
-            </div>
         </div>
     );
 	

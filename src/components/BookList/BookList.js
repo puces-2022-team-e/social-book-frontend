@@ -1,7 +1,8 @@
 import React from 'react';
 import cookie from 'react-cookies';
 import BookItem from './BookItem';
-
+import { CircularProgress } from '@mui/material'
+import '../../App.css'
 
 export default class BookList extends React.Component {
 	state = {
@@ -26,14 +27,20 @@ export default class BookList extends React.Component {
 	render() {
 		console.log('rendering');
 		if (this.state.loading) {
-			return <div>Loading books ... </div>;
+			return (
+			<div className='progressbar'>
+				<CircularProgress />
+			</div>);
 		}
 
 		if (!this.state.books) {
 			return <div>There's no books</div>;
 		}
 
-        console.log(this.state.books)
+		if (this.state.books.error) {
+			return <div>{this.state.books.error}</div>
+		}
+
 		return (
 			<div>
 				{this.state.books.map((book) => (

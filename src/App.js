@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import cookie from 'react-cookies';
 import BookPage from './components/BookPage/BookPage';
 import BookList from './components/BookList/BookList';
+import BookRegister from './components/BookRegister/BookRegister';
 
 const App = () => {
 	const navigate = useNavigate();
@@ -77,6 +78,7 @@ const App = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/books/:short" element={<BookPage />} />
 				<Route path="/books" element={<BookList />} />
+				<Route path="/bookregister" element={<BookRegister />}/>
 				<Route
 					path="/login"
 					element={
