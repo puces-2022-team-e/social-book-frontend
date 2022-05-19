@@ -28,14 +28,11 @@ const DiscussionList = () => {
         })
     ).then(res => {
         setState({ loading: false, discussions: res.data })
-    })).catch(
-      setState({ loading: false, discussions: null })
-    );
+    }));
   }, [])
 
   console.log(loading, discussions)
   if (loading) {
-    // console.log(loading, error)
     return (
         <div className='progressbar'>
             <CircularProgress />

@@ -7,6 +7,7 @@ import cookie from 'react-cookies';
 import { url_base } from '../../constans';
 import './BookPage.css'
 import '../../App.css'
+import NewDiscussion from './NewDiscussion';
 
 const initialState = {
     loading: true,
@@ -56,14 +57,18 @@ function BookPage() {
         return <div>{bookResponse.error}</div>
     }
 
-    const bookInfo = bookResponse[0].bookInfo
+
+    const book = bookResponse[0]
     
     return (
         <div className='bookpage'>
-            <img src={bookInfo.imageLinks.mainImage} className='bookcover' />
-            <h1>{bookInfo.title}</h1>
-            <h2>{bookInfo.authors[0]}</h2>
+            <img src={book.bookInfo.imageLinks.mainImage} className='bookcover' />
+            <h1>{book.bookInfo.title}</h1>
+            <h2>{book.bookInfo.authors[0]}</h2>
             <Rating name="no-value" value={null} />
+            <h3>Discussões</h3>
+            <p>Nenhuma discussão por enquanto</p>
+            <NewDiscussion bookId={book._id}/>
         </div>
     );
 
