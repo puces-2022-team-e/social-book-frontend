@@ -3,6 +3,7 @@ import cookie from 'react-cookies';
 import BookItem from './BookItem';
 import { CircularProgress } from '@mui/material'
 import '../../App.css'
+import { url_base } from '../../constans';
 
 export default class BookList extends React.Component {
 	state = {
@@ -11,8 +12,7 @@ export default class BookList extends React.Component {
 	};
 
 	async componentDidMount() {
-		const url = 'https://cherry-tart-55973.herokuapp.com/api/v1/b';
-		//const url = `http://localhost:8077/api/v1/b`
+		const url = `${url_base}b`
 		const response = await fetch(url, {
 			method: 'GET',
 			headers: {
@@ -49,19 +49,4 @@ export default class BookList extends React.Component {
 			</div>
 		);
 	}
-}
-
-//Print mockup for rating stars
-function printStars(nStars) {
-	let cStars = '[';
-	console.log(`Average Rating: ${nStars}`);
-	if (nStars === 0) {
-		return (cStars += '  ]');
-	}
-
-	for (let i = 0; i < nStars; i++) {
-		cStars += '*';
-	}
-
-	return (cStars += ']');
 }
