@@ -57,12 +57,12 @@ function BookPage() {
     }
 
     const bookInfo = bookResponse[0].bookInfo
-    console.log(bookResponse)
+    
     return (
         <div className='bookpage'>
-            {bookInfo.imageLinks && <img src={bookInfo.imageLinks.mainImage} className='bookcover' />}
-            {bookInfo.title && <h1>{bookInfo.title}</h1>}
-            {bookInfo.authors && <h2>{bookInfo.authors[0]}</h2>}
+            <img src={bookInfo.imageLinks.mainImage} className='bookcover' />
+            <h1>{bookInfo.title}</h1>
+            <h2>{bookInfo.authors[0]}</h2>
             <Rating name="no-value" value={null} />
         </div>
     );
