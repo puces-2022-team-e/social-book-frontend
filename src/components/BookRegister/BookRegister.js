@@ -9,7 +9,7 @@ const fieldsLabels = {
     short: "Apelido",
     title: "Título",
     subtitle: "Subtítulo",
-    authors: "Autor", 
+    authors: "Autor",
     coverURL: "Url da capa",
     mainCategory: "Categoria principal",
     pageCount: "Total de páginas",
@@ -26,13 +26,17 @@ function Field({ id, label, handleChange }) {
 
 function BookRegister() {
     const [bookWasAdded, setBookWasAdded] = useState(false)
-    const [enableButton, setEnableButton] = useState(false)
-    const [bookInfo, setBookInfo] = useState({
-        short: undefined,
-        title: undefined,
-        authors: undefined,
-        coverURL: undefined,
-    });
+    const [state, setState] = useState(
+        {
+            enableButton: false,
+            bookInfo: {
+                short: undefined,
+                title: undefined,
+                authors: undefined,
+                coverURL: undefined,
+            }
+        }
+    );
 
 
     async function addBook() {
@@ -46,7 +50,7 @@ function BookRegister() {
                 'Content-Type': 'application/json',
                 'Authorization': cookie.load('loginToken'),
             },
-            body: JSON.stringify(bookInfo)
+            body: JSON.stringify(state.bookInfo)
         });
 
         console.log(response)
@@ -54,27 +58,30 @@ function BookRegister() {
             setBookWasAdded(true)
         }
     }
+    
+    function validateBookPayload(newBook) {
+        return newBook.title !== undefined && newBook.short !== undefined && newBook.authors !== undefined && newBook.coverURL !== undefined 
+    }
 
     function handleChange(event) {
-        setBookInfo({ ...bookInfo, [event.target.id]: event.target.value === '' ? undefined : event.target.value})
-        setEnableButton(
-            bookInfo.title !== undefined && 
-            bookInfo.short !== undefined && 
-            bookInfo.authors !== undefined && 
-            bookInfo.coverURL !== undefined
-        )
+
+        const newPayload = { ...state.bookInfo, [event.target.id]: event.target.value === '' ? undefined : event.target.value }
+        setState({
+            bookInfo: newPayload,
+            enableButton: validateBookPayload(newPayload)
+        })
     }
 
     function handleSubmitt() {
         addBook()
     }
 
-    if(bookWasAdded){
+    if (bookWasAdded) {
         return (
             <div className='container'>
                 <Typography>Livro adicionado com Sucesso</Typography>
-                <br/>
-                <Link to={`/books/${bookInfo.short}`}>Ir para página do livro</Link>
+                <br />
+                <Link to={`/books/${state.bookInfo.short}`}>Ir para página do livro</Link>
             </div>
         )
     }
@@ -85,7 +92,7 @@ function BookRegister() {
             {Object.entries(fieldsLabels).map((entrie) => (
                 <Field key={entrie[1]} id={entrie[0]} label={entrie[1]} handleChange={handleChange} />
             ))}
-            <Button variant="contained" onClick={handleSubmitt} disabled={!enableButton}> Cadastrar </Button>
+            <Button variant="contained" onClick={handleSubmitt} disabled={!state.enableButton}> Cadastrar </Button>
         </div>
     )
 }
