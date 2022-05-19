@@ -3,6 +3,7 @@ import { Button, TextField, Typography } from '@mui/material'
 import './BookRegister.css'
 import cookie from 'react-cookies';
 import { Link } from 'react-router-dom';
+import { url_base } from '../../constans';
 
 const fieldsLabels = {
     short: "Apelido",
@@ -35,13 +36,9 @@ function BookRegister() {
 
 
     async function addBook() {
-        bookInfo.authors = [bookInfo.authors]
-        bookInfo.imageLinks = {
-            thumbnail: bookInfo.coverURL,
-            mainImage: bookInfo.coverURL
-        }
+
         console.log('add book');
-        const url = `https://cherry-tart-55973.herokuapp.com/api/v1/b/new/`;
+        const url = `${url_base}b/`;
 
         const response = await fetch(url, {
             method: 'POST',

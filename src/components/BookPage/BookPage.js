@@ -4,6 +4,7 @@ import {
 } from "react-router-dom";
 import { Rating, CircularProgress } from '@mui/material'
 import cookie from 'react-cookies';
+import { url_base } from '../../constans';
 import './BookPage.css'
 import '../../App.css'
 
@@ -15,15 +16,14 @@ const initialState = {
 
 
 function BookPage() {
-    const [{ bookInfo, loading, error }, setState] = useState(initialState)
+    const [{ bookResponse, loading, error }, setState] = useState(initialState)
 
 
     let { short } = useParams();
 
     useEffect(() => {
         console.log('fetching books');
-        const url = `https://cherry-tart-55973.herokuapp.com/api/v1/b/${short}`;
-        // const url = `http://localhost:8077/api/v1/b/${id}`
+        const url = `${url_base}b/${short}`;
         fetch(url, {
             method: 'GET',
             headers: {
@@ -35,8 +35,7 @@ function BookPage() {
                 status: response.status
             })
         ).then(res => {
-            setState({ loading: false, bookInfo: res.data, error: false })
-            // console.log(res.status, res.data)
+            setState({ loading: false, bookResponse: res.data, error: false })
         }));
 
     }, [short])
@@ -49,14 +48,16 @@ function BookPage() {
         );
     }
 
-    if (!bookInfo) {
+    if (!bookResponse) {
         return <div>Unable to find book</div>;
     }
 
     if (error) {
-        return <div>{bookInfo.error}</div>
+        return <div>{bookResponse.error}</div>
     }
 
+    const bookInfo = bookResponse[0].bookInfo
+    
     return (
         <div className='bookpage'>
             <img src={bookInfo.imageLinks.mainImage} className='bookcover' />

@@ -6,6 +6,7 @@ import './Discussion.css'
 
 const DiscussionItem = ({ discussionData }) => {
 
+  console.log(discussionData)
   let discussionComments
   if (discussionData.comments){
     discussionComments = discussionData.comments.map((comment) => (<DiscussionComment key={comment.id} commentData={ comment }/>))
@@ -13,11 +14,11 @@ const DiscussionItem = ({ discussionData }) => {
   
   return (
         <div className='Discussion-item'>
-          <DiscussionBookSummary 
+          {discussionData.bookSummary && <DiscussionBookSummary 
             bookSummary={discussionData.bookSummary} 
-          />
-          <p className='Discussion-texts'>@{discussionData.userName}</p>
-          <p className='Discussion-texts'>{discussionData.discussion}</p>
+          />}
+          {discussionData.userName && <p className='Discussion-texts'>@{discussionData.userName}</p>}
+          <p className='Discussion-texts'>{discussionData.title}</p>
           {discussionComments}
         </div>
     )

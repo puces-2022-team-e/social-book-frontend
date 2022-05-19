@@ -4,22 +4,25 @@ import './BookList.css'
 import { Link } from 'react-router-dom'
 
 function BookItem({ data }) {
+    
+    const bookInfo = data.bookInfo
     return (
         <div className='bookitembox'>
             <Link to={`/books/${data.short}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                 <div className='bookitem'>
-                    <img src={data.imageLinks.mainImage} width="100" />
+                    <img src={bookInfo.imageLinks.mainImage} width="100" />
                     <div className='bookinfo'>
-                        <h6>{data.authors[0]}</h6>
-                        <p>{data.title}</p>
+                        <h6>{bookInfo.authors[0]}</h6>
+                        <p>{bookInfo.title}</p>
                         <div>
-                            <Rating name="read-only" value={data.averageRating} readOnly />
+                            <Rating name="read-only" value={bookInfo.averageRating} readOnly />
                         </div>
                     </div>
                 </div>
             </Link>
         </div>
     )
+    
 }
 
 export default BookItem
