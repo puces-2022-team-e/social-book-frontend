@@ -8,6 +8,7 @@ import { url_base } from '../../constans';
 import './BookPage.css'
 import '../../App.css'
 import NewDiscussion from './NewDiscussion';
+import Error from '../Error/Error';
 
 const initialState = {
     loading: true,
@@ -53,8 +54,8 @@ function BookPage() {
         return <div>Unable to find book</div>;
     }
 
-    if (error) {
-        return <div>{bookResponse.error}</div>
+    if (bookResponse.error) {
+        return <Error error={bookResponse.error}/>
     }
 
 

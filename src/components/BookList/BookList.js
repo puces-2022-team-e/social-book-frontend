@@ -4,6 +4,7 @@ import BookItem from './BookItem';
 import { CircularProgress } from '@mui/material'
 import '../../App.css'
 import { url_base } from '../../constans';
+import Error from '../Error/Error';
 
 export default class BookList extends React.Component {
 	state = {
@@ -38,7 +39,7 @@ export default class BookList extends React.Component {
 		}
 
 		if (this.state.books.error) {
-			return <div>{this.state.books.error}</div>
+			return <Error error={this.state.books.error}/>
 		}
 
 		return (

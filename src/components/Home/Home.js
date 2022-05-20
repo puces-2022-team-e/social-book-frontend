@@ -3,7 +3,7 @@ import DiscussionList from './DiscussionList/DiscussionList';
 
 const Home = () => {
   return (
-    <div className='container'>
+    <div>
         <DiscussionList key={"list"} />
     </div>
   )
