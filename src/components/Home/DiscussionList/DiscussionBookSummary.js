@@ -1,16 +1,15 @@
 import React from 'react'
-import { Rating } from '@mui/material'
+import { Link } from 'react-router-dom'
 import './Discussion.css'
 
-const DiscussionBookSummary = ({bookSummary}) => {
+const DiscussionBookSummary = ({ bookSummary }) => {
     return (
-        <div className='Discussion-book-summary'>
-            <h4>{bookSummary.title}</h4>
-            <div>
-                <h6>{bookSummary.author}</h6>
-                <Rating name="read-only" value={bookSummary?.avaregeRating} readOnly/>
-            </div>
-        </div>
+            <Link to={`/books/${bookSummary.short}`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                <div className='Discussion-book-summary'>
+                    <h4>{bookSummary.title}</h4>
+                    <h6>{bookSummary.author}</h6>
+                </div>
+            </Link>
     )
 }
 

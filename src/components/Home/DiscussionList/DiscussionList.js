@@ -3,6 +3,8 @@ import DiscussionItem from './DiscussionItem'
 import cookie from 'react-cookies';
 import { CircularProgress } from '@mui/material';
 import { url_base } from '../../../constans';
+import Error from '../../Error/Error';
+import '../../../App.css'
 
 const initialState = {
   loading: true,
@@ -44,9 +46,15 @@ const DiscussionList = () => {
       return <div>Unable to find any discussion</div>;
   }
 
+  if (discussions.error){
+    return(
+      <Error error={discussions.error}/>
+    )
+  }
+
   return (
-    <div>
-        {discussions.map((discussion) => (<DiscussionItem key={discussion.id} discussionData={ discussion }/>))}
+    <div className='container'>
+        {discussions.map((discussion) => (<DiscussionItem key={discussion._id} discussionData={ discussion }/>))}
     </div>
   )
 }
