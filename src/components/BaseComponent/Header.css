@@ -26,3 +26,11 @@
 .header-login-button {
     align-self: flex-end;
 }
+
+.search-bar {
+    display: flex;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: lightgray;
+}
