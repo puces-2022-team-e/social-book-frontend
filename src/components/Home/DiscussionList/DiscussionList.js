@@ -46,7 +46,7 @@ const DiscussionList = () => {
 
   return (
     <div>
-        {discussions.map((discussion) => (<DiscussionItem key={discussion.id} discussionData={ discussion }/>))}
+        {discussions.map((discussion) => (<DiscussionItem key={discussion._id} discussionData={ discussion }/>))}
     </div>
   )
 }
