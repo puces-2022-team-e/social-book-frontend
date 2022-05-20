@@ -12,6 +12,7 @@ import cookie from 'react-cookies';
 import BookPage from './components/BookPage/BookPage';
 import BookList from './components/BookList/BookList';
 import BookRegister from './components/BookRegister/BookRegister';
+import Helmet from 'react-helmet';
 
 const App = () => {
 	const navigate = useNavigate();
@@ -71,6 +72,9 @@ const App = () => {
 
 	return (
 		<div className="App">
+			<Helmet>
+				<title>Social Book</title>
+			</Helmet>
 			<Header userInfo={userInfo} />
 			<Routes>
 				<Route path="/fetchbooks" element={<FetchBooks />} />
@@ -78,7 +82,7 @@ const App = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/books/:short" element={<BookPage />} />
 				<Route path="/books" element={<BookList />} />
-				<Route path="/bookregister" element={<BookRegister />}/>
+				<Route path="/bookregister" element={<BookRegister />} />
 				<Route
 					path="/login"
 					element={
