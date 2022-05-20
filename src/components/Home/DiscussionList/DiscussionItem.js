@@ -17,10 +17,10 @@ const DiscussionItem = ({ discussionData }) => {
 
   return (
     <div className='Discussion-item'>
-      {discussionData.bookSummary && <DiscussionBookSummary
+      {/* {discussionData.bookSummary && <DiscussionBookSummary
         bookSummary={discussionData.bookSummary}
-      />}
-      {discussionData.userName && <p className='Discussion-texts'>@{discussionData.userName}</p>}
+      />} */}
+      {/* {discussionData.userName && <p className='Discussion-texts'>@{discussionData.userName}</p>} */}
       <p className='Discussion-texts'>{discussionData.title}</p>
       <CommentsList discussionId={discussionData._id}/>
     </div>
