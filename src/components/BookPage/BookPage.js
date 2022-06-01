@@ -12,14 +12,12 @@ import Error from '../Error/Error';
 
 const initialState = {
     loading: true,
-    data: null,
-    error: false
+    data: null
 };
 
 
 function BookPage() {
-    const [{ bookResponse, loading, error }, setState] = useState(initialState)
-
+    const [{ bookResponse, loading }, setState] = useState(initialState)
 
     let { short } = useParams();
 
@@ -69,7 +67,7 @@ function BookPage() {
             <Rating name="no-value" value={null} />
             <h3>Discussões</h3>
             <p>Nenhuma discussão por enquanto</p>
-            <NewDiscussion bookId={book._id}/>
+            <NewDiscussion book={book}/>
         </div>
     );
 

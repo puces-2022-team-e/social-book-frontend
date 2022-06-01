@@ -1,0 +1,9 @@
+.new-comment {
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 8px;
+    background-color: #bdcdd6;
+}

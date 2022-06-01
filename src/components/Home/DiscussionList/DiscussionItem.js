@@ -1,8 +1,9 @@
 import React from 'react'
-import DiscussionBookSummary from './DiscussionBookSummary'
-import DiscussionComment from './DiscussionComment'
+import DiscussionComment from '../../DiscussionPage/CommentsList/DiscussionComment'
 import './Discussion.css'
-import CommentsList from './CommentsList'
+import { Button } from '@mui/material'
+import { Link } from 'react-router-dom'
+import DiscussionSummary from '../../DiscussionComponents/DiscussionSummary'
 
 
 const DiscussionItem = ({ discussionData }) => {
@@ -13,16 +14,11 @@ const DiscussionItem = ({ discussionData }) => {
     discussionComments = discussionData.comments.map((comment) => (<DiscussionComment key={comment.id} commentData={comment} />))
   }
 
-  discussionData = { ...discussionData, bookSummary: {title: "mock", author: "mooock", short:'malcolmxfala'}, userName: "usuarioFicticio"}
-
   return (
     <div className='Discussion-item'>
-      {/* {discussionData.bookSummary && <DiscussionBookSummary
-        bookSummary={discussionData.bookSummary}
-      />} */}
-      {/* {discussionData.userName && <p className='Discussion-texts'>@{discussionData.userName}</p>} */}
-      <p className='Discussion-texts'>{discussionData.title}</p>
-      <CommentsList discussionId={discussionData._id}/>
+      <Link style={{ color: 'inherit', textDecoration: 'inherit'}} to={`d/${discussionData._id}`}>
+        <DiscussionSummary discussionData={discussionData} />
+      </Link>
     </div>
   )
 }

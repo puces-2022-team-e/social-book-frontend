@@ -4,7 +4,7 @@ import { url_base } from '../../constans';
 import cookie from 'react-cookies';
 import './BookPage.css'
 
-function NewDiscussion({ bookId }) {
+function NewDiscussion({ book }) {
     const [state, setState] = useState({discussionText: '', validText: false});
 
     function handleChange(event) {
@@ -20,7 +20,11 @@ function NewDiscussion({ bookId }) {
         const url = `${url_base}d/`;
         const payload = {
             title: state.discussionText,
-            bookId: bookId
+            bookId: book._id,
+            userName: cookie.load('userName'),
+            bookTitle: book.bookInfo.title,
+            bookShort: book.short,
+            bookAuthor: book.bookInfo.authors[0]
         }
 
         const response = await fetch(url, {
