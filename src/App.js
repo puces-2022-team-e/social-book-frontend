@@ -13,6 +13,7 @@ import BookPage from './components/BookPage/BookPage';
 import BookList from './components/BookList/BookList';
 import BookRegister from './components/BookRegister/BookRegister';
 import Helmet from 'react-helmet';
+import DiscussionPage from './components/DiscussionPage/DiscussionPage';
 
 const App = () => {
 	const navigate = useNavigate();
@@ -83,6 +84,7 @@ const App = () => {
 				<Route path="/books/:short" element={<BookPage />} />
 				<Route path="/books" element={<BookList />} />
 				<Route path="/bookregister" element={<BookRegister />} />
+				<Route path="/d/:id" element={<DiscussionPage />} />
 				<Route
 					path="/login"
 					element={
