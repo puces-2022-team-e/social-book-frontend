@@ -36,7 +36,7 @@ function DiscussionPage() {
         setState({ loading: false, discussionResponse: res.data })
     }));
 
-}, [id])
+  }, [id])
 
   if (loading) {
     return <CircularProgress />
@@ -50,10 +50,9 @@ function DiscussionPage() {
     return <Error error={discussionResponse.error}/>
   }
 
-
   return (
     <div className='container'>
-      <DiscussionSummary discussionData={ discussionResponse[0] }/>
+      <DiscussionSummary discussionData={ discussionResponse }/>
       <CommentsList discussionId={id}/>
       <NewComment discussionId={id} />
     </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../../App.css'
 
 function Error({ error }) {
-  const isExpiredTokenError = (error.includes('Token used too late'))
+  const isExpiredTokenError = (error && error.includes('Token used too late'))
   return (
     <div className='container'>
     <div>Algo deu errado</div>
