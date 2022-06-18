@@ -43,14 +43,28 @@ function BookRegister() {
 
         console.log('add book');
         const url = `${url_base}b/`;
-
+		const newBook = {
+			short: state.bookInfo.authors,
+			bookInfo: {
+				title: state.bookInfo.title,
+				subtitle:state.bookInfo.subtitle,
+				authors: state.bookInfo.authors,
+				publisher:state.bookInfo.publisher,
+				pageCount: state.bookInfo.pageCount,
+				mainCategory: "",
+					imageLinks: {
+						mainImage:state.bookInfo.coverURL
+					}
+			},
+			selfLink: `${url_base}b/${state.bookInfo.authors}`
+		}
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': cookie.load('loginToken'),
             },
-            body: JSON.stringify(state.bookInfo)
+            body: JSON.stringify(newBook)
         });
 
         console.log(response)
