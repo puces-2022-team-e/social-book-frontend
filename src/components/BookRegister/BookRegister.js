@@ -44,7 +44,7 @@ function BookRegister() {
 	async function addBook() {
 		const url = `${url_base}b/`;
 		const newBook = {
-			short: state.bookInfo.authors,
+			short: state.bookInfo.short,
 			bookInfo: {
 				title: state.bookInfo.title,
 				subtitle: state.bookInfo.subtitle,
@@ -56,7 +56,7 @@ function BookRegister() {
 					mainImage: state.bookInfo.coverURL,
 				},
 			},
-			selfLink: `${url_base}b/${state.bookInfo.authors}`,
+			selfLink: `${url_base}b/${state.bookInfo.short}`,
 		};
 
 		console.log(`[add book] ${JSON.stringify(newBook)}`);
