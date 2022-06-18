@@ -48,7 +48,7 @@ function BookRegister() {
 			bookInfo: {
 				title: state.bookInfo.title,
 				subtitle: state.bookInfo.subtitle,
-				authors: state.bookInfo.authors,
+				authors: [state.bookInfo.authors],
 				publisher: state.bookInfo.publisher,
 				pageCount: state.bookInfo.pageCount,
 				mainCategory: state.bookInfo.mainCategory,
